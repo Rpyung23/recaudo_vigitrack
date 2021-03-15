@@ -1,0 +1,128 @@
+.container-info {
+    height: 89vh;
+    width: 100%;
+    margin: 0 0 0 1rem;
+}
+
+.item-info-1 {
+    display: flex;
+    flex-direction: row;
+    height: 30vh;
+}
+
+.sub-item-info-1 {
+    height: 100%;
+    flex-basis: 50%;
+    background-color: white;
+    border-style: solid;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.sub-item-info-2 {
+    height: 100%;
+    flex-basis: 50%;
+    background-color: white;
+    border-style: solid;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left-color: transparent;
+    overflow-x: hidden;
+}
+
+.item-info-2 {
+    margin: 2rem;
+}
+
+table tbody tr {
+    background-color: white;
+}
+
+thead tr th {
+    font-size: 1.5rem;
+}
+
+tbody tr th {
+    font-size: 1.2rem;
+}
+
+tbody tr td {
+    font-size: 1.2rem;
+}
+
+input {
+    outline: none;
+}
+
+.input-round-fecha {
+    width: 15rem !important;
+}
+
+.input-round-sn-border {
+    border-color: transparent !important;
+    outline: none;
+    color: white !important;
+    cursor: pointer;
+    font-weight: 500 !important;
+}
+
+.input-round-lleno {
+    background-color: #222D32;
+    color: white !important;
+}
+
+.class-icons-despacho {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-position: center;
+    background-size: cover;
+}
+
+.input-round {
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: #222D32;
+    height: 3rem;
+    width: 11rem;
+    color: black;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.input-round-buttons {
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: #222D32;
+    height: 4.2rem;
+    width: 11rem;
+    color: black;
+    font-size: 1.5rem;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.input-round-button:last-child {
+    margin-right: 0rem;
+}
+
+label {
+    background-color: white;
+}
+
+.container-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-input-round {
+    margin: auto;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

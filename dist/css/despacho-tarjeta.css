@@ -51,7 +51,11 @@ tbody tr td {
 }
 
 input {
-    outline: none;
+    outline: none !important;
+}
+
+select {
+    outline: none !important;
 }
 
 .input-round-fecha {
@@ -81,13 +85,18 @@ input {
 .input-round {
     border-style: solid;
     border-radius: 0.5rem;
-    border-color: #222D32;
+    border-color: #367FA9;
     height: 3rem;
     width: 11rem;
     color: black;
     font-size: 1.5rem;
     text-align: center;
     font-weight: bold;
+    margin-right: 1rem;
+}
+
+.input-round:last-child {
+    margin-right: 0rem;
 }
 
 .input-round-buttons {
@@ -125,4 +134,11 @@ label {
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+.container-nav-header-unidades {
+    height: 100%;
+    display: flex;
+    margin-left: 1rem;
+    align-items: center;
 }

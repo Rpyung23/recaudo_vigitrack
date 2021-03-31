@@ -1,0 +1,58 @@
+.btn_circle {
+    border-radius: 100%;
+    background-color: #2A3F4C;
+    height: 4rem;
+    width: 4rem;
+    margin-right: 1rem;
+}
+
+.btn_border_round {
+    border-radius: 1rem;
+    background-color: #286090;
+    height: 4rem;
+    width: 10rem;
+    margin-right: 1rem;
+}
+
+.btn_border_round i span {
+    margin-left: 1rem;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+.btn_circle_search {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    color: white;
+}
+
+.btn_border_round_print {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    color: white;
+}
+
+.btn_circle_maps {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    color: white;
+}
+
+.btn_circle:hover {
+    background-color: #3C8DBC;
+    cursor: pointer;
+}
+
+.btn_border_round:hover {
+    background-color: #3C8DBC;
+    cursor: pointer;
+}

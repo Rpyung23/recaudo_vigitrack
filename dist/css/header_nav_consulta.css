@@ -1,0 +1,16 @@
+.nav-header-consulta {
+    background-color: white;
+    height: 5rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem #4D000000;
+}
+
+.container-nav-header-unidades-separater-between {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: space-between;
+    align-content: center;
+}

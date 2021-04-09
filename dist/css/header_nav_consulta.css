@@ -2,9 +2,8 @@
     background-color: white;
     height: 5rem;
     width: 100%;
-    margin-bottom: 1.5rem;
     border-radius: 1rem;
-    box-shadow: 0.2rem 0.2rem 0.2rem #4D000000;
+    box-shadow: 2px 2px 10px #666;
 }
 
 .container-nav-header-unidades-separater-between {

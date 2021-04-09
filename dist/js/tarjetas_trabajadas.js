@@ -12,9 +12,9 @@ function tarjetas_trabajadas_all(fechaI, fechaF) {
     var url_ = "";
 
     if (option_unidad == "*") {
-        url_ = "http://localhost:3000/tarjetas_trabajadas_all/uambatena1198/" + fechaI + "/" + fechaF
+        url_ = "http://localhost:3000/tarjetas_trabajadas_all/" + fechaI + "/" + fechaF
     } else {
-        url_ = "http://localhost:3000/tarjetas_trabajadas_unidad/uambatena1198/" + option_unidad + "/" + fechaI + "/" + fechaF
+        url_ = "http://localhost:3000/tarjetas_trabajadas_unidad/" + option_unidad + "/" + fechaI + "/" + fechaF
     }
 
     $.ajax({
@@ -22,7 +22,8 @@ function tarjetas_trabajadas_all(fechaI, fechaF) {
         url: url_,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        method: "GET"
+        method: "POST",
+        data: getCookie("token")
     }).done(function(json_response) {
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)

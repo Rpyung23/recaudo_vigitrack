@@ -11,7 +11,7 @@ function recorrido() {
     let horaF = document.getElementById("time_recorrido_end").value
 
     if (horaF > horaI) {
-        var url_ = "http://localhost:3000/recorrido/uambatena1198/" + option_unidad + "/" + fecha + "/" + horaI + "/" + horaF
+        var url_ = "http://localhost:3000/recorrido/" + option_unidad + "/" + fecha + "/" + horaI + "/" + horaF
 
         console.log(url_)
         $.ajax({
@@ -19,7 +19,8 @@ function recorrido() {
             url: url_,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            method: "GET"
+            method: "POST",
+            data: getCookie("token")
         }).done(function(json_response) {
             var json_string = JSON.stringify(json_response)
             var json_parse = JSON.parse(json_string)

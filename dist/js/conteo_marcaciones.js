@@ -4,7 +4,7 @@ function llenar_tbody_conteo_marcaciones(date) {
     let contador = 1
 
 
-    let url_ = "http://localhost:3000/conteo_marcaciones_tabla/uambatena1198/" + date;
+    let url_ = "http://localhost:3000/conteo_marcaciones_tabla/" + date;
     console.log(url_)
 
     $.ajax({
@@ -12,7 +12,8 @@ function llenar_tbody_conteo_marcaciones(date) {
         url: url_,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        method: "GET"
+        method: "POST",
+        data: getCookie("token")
 
     }).done(function(datos) {
         var json_string = JSON.stringify(datos)
@@ -56,7 +57,7 @@ function llenar_tbody_conteo_marcaciones_pdf(salida) {
     let contador = 1
 
 
-    let url_ = "http://localhost:3000/conteo_marcaciones_pdf/uambatena1198/" + salida;
+    let url_ = "http://localhost:3000/conteo_marcaciones_pdf/" + salida;
     console.log(url_)
 
     $.ajax({
@@ -64,7 +65,8 @@ function llenar_tbody_conteo_marcaciones_pdf(salida) {
         url: url_,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        method: "GET"
+        method: "POST",
+        data: getCookie("token")
 
     }).done(function(datos) {
         var json_string = JSON.stringify(datos)

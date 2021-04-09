@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 120rem;
+    height: 100vh;
+    background-image: url("../img/fondo.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+
+img {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 100%;
+    border-color: #268bbb;
+    border-width: 0.5rem;
+    border-style: solid;
+    position: absolute;
+    bottom: 30rem;
+}
+
+.container-login {
+    height: 25rem;
+    width: 20rem;
+    background-color: white;
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -0.5rem 0.5rem 0.5rem rgb(111, 163, 189);
+}
+
+input {
+    background-color: white;
+    width: 14rem;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    border-width: 0.1rem;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+input:focus {
+    outline: none;
+}
+
+.selector {
+    background-color: white;
+    width: 14.45rem;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.options {
+    background-color: white;
+    width: 19rem;
+    height: 20rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    position: absolute;
+    margin-top: 15rem;
+    z-index: 100000;
+    visibility: hidden;
+    overflow: scroll;
+    clip-path: inset(0 0 100% 0);
+}
+
+.options-visible {
+    transition: all 0.5s ease;
+    clip-path: inset(0 0 0 0);
+    visibility: visible;
+}
+
+.label_name_company {
+    margin-left: 0.5rem;
+    flex-basis: calc(90%);
+    cursor: pointer;
+}
+
+i {
+    flex-basis: calc(10%);
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+ul {
+    margin: 0.2rem;
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+    background-color: white;
+    cursor: pointer;
+    margin-right: 0.1rem;
+    margin-left: 0.1rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
+li:hover {
+    background-color: #268bbb;
+    color: white;
+}
+
+.item-active {
+    background-color: #268bbb;
+    color: white;
+}
+
+button {
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border-width: 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: white;
+    background: #000046;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1CB5E0, #000046);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+button:focus {
+    outline: none;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

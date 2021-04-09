@@ -1,0 +1,21 @@
+.check_container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check_penalidad {
+    margin: 0px !important;
+    padding: 0px;
+    background-color: blue;
+}
+
+.check_container span {
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

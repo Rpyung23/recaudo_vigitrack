@@ -5,7 +5,7 @@ function tabla_despacho() {
     let select_unidad = document.getElementById("select_buses_global")
     let option_unidad = select_unidad.options[select_unidad.selectedIndex].value
 
-    var url_ = "http://localhost:3000/salidas_unidad_unidad/uambatena1198/" + option_unidad + "/" + fecha + "/" + fecha
+    var url_ = "http://localhost:3000/salidas_unidad_unidad/" + option_unidad + "/" + fecha + "/" + fecha
 
     console.log(url_)
     $.ajax({
@@ -13,7 +13,8 @@ function tabla_despacho() {
         url: url_,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        method: "GET"
+        method: "POST",
+        data: getCookie("token")
     }).done(function(json_response) {
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)
@@ -78,7 +79,7 @@ function tabla_despacho_salida_m_tarjeta(salida) {
 
     let tabla_salidas = ""
     let contador = 0;
-    var url_ = "http://localhost:3000/tarjeta/uambatena1198/" + salida
+    var url_ = "http://localhost:3000/tarjeta/" + salida
 
     //console.log(url_)
     $.ajax({
@@ -86,7 +87,8 @@ function tabla_despacho_salida_m_tarjeta(salida) {
         url: url_,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        method: "GET"
+        method: "POST",
+        data: getCookie("token")
     }).done(function(json_response) {
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)

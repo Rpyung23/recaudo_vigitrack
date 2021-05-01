@@ -1,0 +1,69 @@
+.spinner {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 100%;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: white;
+    border-top-color: #268bbb;
+    background-color: transparent;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    animation: spin 0.5s ease infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.loading {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 100000;
+    background-color: rgba(18, 18, 18, 0.788);
+    transition: all 0.7s ease;
+}
+
+
+/*.hideLoading {
+    animation: hide 0.5s ease normal;
+}*/
+
+.close {
+    clip-path: circle(0.0% at 50% 50%);
+}
+
+.open {
+    clip-path: circle(70.7% at 50% 50%);
+}
+
+
+/*.showLoading {
+    animation: show 0.5s ease normal;
+}*/
+
+
+/*@keyframes show {
+    0% {
+        clip-path: circle(0.0% at 50% 50%);
+    }
+    100% {
+        clip-path: circle(70.7% at 50% 50%);
+    }
+}
+
+@keyframes hide {
+    0% {
+        clip-path: circle(70.7% at 50% 50%);
+    }
+    100% {
+        clip-path: circle(0.0% at 50% 50%);
+    }
+}*/

@@ -2,6 +2,7 @@
 
 
 function tarjetas_trabajadas_all(fechaI, fechaF) {
+    showSpinner()
 
     let tabaja_tarjetas_trabajadas = ""
 
@@ -25,6 +26,7 @@ function tarjetas_trabajadas_all(fechaI, fechaF) {
         method: "POST",
         data: getCookie("token")
     }).done(function(json_response) {
+        hideSpinner()
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)
 
@@ -57,11 +59,36 @@ function tarjetas_trabajadas_all(fechaI, fechaF) {
             var element = document.getElementById("tbody_tarjeta_trabajadas")
             element.innerHTML = tabaja_tarjetas_trabajadas
 
+        } else if (json_parse.status_code == 300) {
+            //alert("SIn datos")
+
+            Swal.fire(
+                'Tarjetas',
+                'No existen datos disponibles',
+                'info'
+            )
+
+        } else if (json_parse.status_code == 400) {
+
+            Swal.fire(
+                'Error 400',
+                json_parse.datos,
+                'error'
+            )
+
         } else {
-            console.log("No se puede cargar las unidades")
+
+            console.log("Code : " + json_parse.status_code)
+                /*****ERROR 500*****/
+            token_invalited()
         }
     }).fail(function(error) {
-        alert(error)
+        hideSpinner()
+        Swal.fire(
+            'Error server 400',
+            'Api Rest Fail BackEnd',
+            'error'
+        )
     })
 
 
@@ -79,16 +106,16 @@ $(document).on("click", "#btn_search_tarjeta_trabajadas", function() {
             tarjetas_trabajadas_all(fechaI, fechaF)
         } else {
             Swal.fire(
-                'Error de datos',
+                'Rango de fechas no válidas',
                 'El rango de fechas no es válido',
-                'error'
+                'warning'
             )
         }
     } else {
         Swal.fire(
-            'Existen datos vacios',
-            'El rango de fechas no es válido',
-            'error'
+            'Fechas no válida',
+            'Por favor ingrese un fecha válida',
+            'warning'
         )
     }
 })

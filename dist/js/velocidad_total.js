@@ -21,6 +21,7 @@ function getFecha_dd_mm_yyyy() {
 
 function all_historial_velocidad(unidad, velocidad, fechaI, fechaF, bandera_all) {
 
+    showSpinner()
 
     clearTablaSalidas()
 
@@ -45,15 +46,22 @@ function all_historial_velocidad(unidad, velocidad, fechaI, fechaF, bandera_all)
         method: "POST",
         data: getCookie("token")
     }).done(function(json_response) {
+        hideSpinner()
+
+
+        Swal.fire(
+            'Bus numero ' + unidad,
+            'Datos consultados con exito!',
+            'success'
+        )
+
+
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)
 
         if (json_parse.status_code == 200) {
             console.log("ok")
             for (let i = 0; i < json_parse.datos.length; i++) {
-
-
-
 
                 tbody_salidas += `<tr role="row" class="even">
                 <td>${json_parse.datos[i].unidad}</td>
@@ -68,10 +76,23 @@ function all_historial_velocidad(unidad, velocidad, fechaI, fechaF, bandera_all)
             //console.log(select_buses)
             document.getElementById("tbody_salidas_velocidad").innerHTML = tbody_salidas
 
+        } else if (json_parse.status_code == 300) {
+            Swal.fire(
+                'Bus numero ' + unidad,
+                'No existen datos disponibles',
+                'info'
+            )
+        } else if (json_parse.status_code == 400) {
+            Swal.fire(
+                'Error 400',
+                json_parse.datos,
+                'error'
+            )
         } else {
-            console.log("No se puede cargar las unidades")
+            token_invalited()
         }
     }).fail(function(error) {
+        hideSpinner()
         console.log(error)
     })
 }
@@ -126,8 +147,8 @@ $(document).on("click", "#btn_search_tarjetas_velocidad", function() {
 
             } else {
                 Swal.fire(
-                    'Bus numero ' + unidad,
-                    'No válido',
+                    'Bus numero ' + unidad + ' o campo vacío',
+                    'Por favor seleccionar un Bus',
                     'error'
                 )
             }
@@ -140,9 +161,9 @@ $(document).on("click", "#btn_search_tarjetas_velocidad", function() {
         }
     } else {
         Swal.fire(
-            'Fecha no válida',
-            '',
-            'error'
+            'Sin Fechas',
+            'Por favor ingresar las fechas a bucar',
+            'warning'
         )
     }
 })

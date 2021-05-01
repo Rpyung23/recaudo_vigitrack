@@ -1,9 +1,11 @@
 let btn_print = document.getElementById("btn_print_tarjetas_unidades")
 
-function report_api_all_sp(url_) {
+function report_api_all_sp(url_, unidad) {
+    showSpinner()
+
     let tbody = " "
 
-    console.log(url_)
+    //console.log(url_)
 
     $.ajax({
         url: url_,
@@ -12,10 +14,14 @@ function report_api_all_sp(url_) {
         method: "POST",
         data: getCookie("token")
     }).done(function(datos) {
+        hideSpinner()
+
         var json_string = JSON.stringify(datos)
         var json_parse = JSON.parse(json_string)
 
         if (json_parse.status_code == 200) {
+            sweetAlert('Penalidad por segundos Unidad ' + unidad, 'Datos consultados con éxito', 'success')
+
             for (let i = 0; i < json_parse.datos.length; i++) {
 
                 var min = "S/N"
@@ -42,13 +48,16 @@ function report_api_all_sp(url_) {
             document.getElementById("tbody_tarjetas_unidades").innerHTML = tbody
 
         } else if (json_parse.status_code == 300) {
-            alert("datos vacios")
+            sweetAlert('Penalidad por segundos Unidad ' + unidad, 'No existen datos disponibles', 'info')
+        } else if (json_parse.status_code == 400) {
+            sweetAlert('Error 400', json_parse.datos, 'error')
         } else {
-            alert("SQL" + json_parse.datos)
+            token_invalited()
         }
-
     }).fail(function(error) {
-        alert(error)
+        hideSpinner()
+        sweetAlert('Error 400', 'Error ApiRest BackEnd', 'error')
+            //alert(error)
     })
 }
 
@@ -102,7 +111,7 @@ $(document).on("click", "#btn_search_tarjeta_unidades", function() {
                 }
             }
 
-            report_api_all_sp(url_)
+            report_api_all_sp(url_, unidad)
         } else {
             sweetAlert("Unidad no válida", "Sin unidad seleccionada", "error")
         }

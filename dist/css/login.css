@@ -2,9 +2,13 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    line-height: 1.15;
+    /* 1 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
 }
 
-.container {
+body {
     max-width: 120rem;
     height: 100vh;
     background-image: url("../img/fondo.jpg");
@@ -20,18 +24,28 @@ img {
     border-width: 0.5rem;
     border-style: solid;
     position: absolute;
-    bottom: 30rem;
+    top: -4.5rem;
+    left: calc(28.5%);
 }
 
-.container-login {
-    height: 25rem;
-    width: 20rem;
-    background-color: white;
-    border-radius: 0.8rem;
+.elemnts_login {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.container-login {
+    height: 25rem;
+    width: 18rem;
+    padding: 1rem 1rem;
+    background-color: white;
+    border-radius: 0.8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     box-shadow: -0.5rem 0.5rem 0.5rem rgb(111, 163, 189);
 }
 
@@ -68,12 +82,12 @@ input:focus {
     background-color: white;
     width: 19rem;
     height: 20rem;
+    margin-left: 12rem;
     margin-bottom: 0.5rem;
     border-radius: 0.5rem;
     border-width: 0.1rem;
     border-style: solid;
     position: absolute;
-    margin-top: 15rem;
     z-index: 100000;
     visibility: hidden;
     overflow: scroll;
@@ -102,7 +116,10 @@ i {
 
 ul {
     margin: 0.2rem;
+    width: 20rem;
     list-style: none;
+    height: 20rem;
+    overflow: scroll;
 }
 
 li {
@@ -152,4 +169,10 @@ button:focus {
     justify-content: center;
     align-content: center;
     align-items: center;
+}
+
+#btnCompany {
+    width: 17rem;
+    border-radius: 0%;
+    margin-bottom: 1rem;
 }

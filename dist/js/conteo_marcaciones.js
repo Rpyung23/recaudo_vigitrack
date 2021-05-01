@@ -2,10 +2,10 @@ function llenar_tbody_conteo_marcaciones(date) {
     let tbody_conteo_marcaciones = ""
 
     let contador = 1
-
+    showSpinner()
 
     let url_ = "http://localhost:3000/conteo_marcaciones_tabla/" + date;
-    console.log(url_)
+    //console.log(url_)
 
     $.ajax({
         crossDomain: true,
@@ -16,6 +16,11 @@ function llenar_tbody_conteo_marcaciones(date) {
         data: getCookie("token")
 
     }).done(function(datos) {
+        hideSpinner()
+
+
+        document.getElementById("tbody_conteo_marcaciones").innerHTML = ""
+
         var json_string = JSON.stringify(datos)
         var json_parse = JSON.parse(json_string)
 
@@ -28,6 +33,9 @@ function llenar_tbody_conteo_marcaciones(date) {
                     <td>${json_parse.datos[i].hora}</td>
                     <td>${json_parse.datos[i].conteo_control}</td>
                     <td>${json_parse.datos[i].sin_marcar}</td>
+                    <td><div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn_see_tarjeta btn btn-primary" id_salida=${json_parse.datos[i].id_salida}><i class="far fa-file-pdf"></i></button>
+              </div></td>
                 </tr>`
                 contador++
             }
@@ -41,24 +49,50 @@ function llenar_tbody_conteo_marcaciones(date) {
             )
 
 
+        } else if (json_parse.status_code == 300) {
+            //alert("SIn datos")
+
+            Swal.fire(
+                'Conteo Marcaciones',
+                'No existen datos disponibles',
+                'info'
+            )
+        } else if (json_parse.status_code == 400) {
+            Swal.fire(
+                'Error 400',
+                json_parse.datos,
+                'error'
+            )
         } else {
-            alert("SIn datos")
+
+            //console.log("Code : " + json_parse.status_code)
+            /*****ERROR 500*****/
+            token_invalited()
         }
 
 
     }).fail(function(error) {
-        console.log(error)
+        hideSpinner()
+
+        Swal.fire(
+            'Error 400',
+            'Problemas api-rest BackEnd',
+            'error'
+        )
+
     })
 }
 
 function llenar_tbody_conteo_marcaciones_pdf(salida) {
+    showSpinner()
+
     let tbody_conteo_marcaciones = ""
     document.getElementById("tbody_conteo_marcaciones_pdf").innerHTML = tbody_conteo_marcaciones
     let contador = 1
 
 
     let url_ = "http://localhost:3000/conteo_marcaciones_pdf/" + salida;
-    console.log(url_)
+    //console.log(url_)
 
     $.ajax({
         crossDomain: true,
@@ -69,10 +103,19 @@ function llenar_tbody_conteo_marcaciones_pdf(salida) {
         data: getCookie("token")
 
     }).done(function(datos) {
+
+        hideSpinner()
+
         var json_string = JSON.stringify(datos)
         var json_parse = JSON.parse(json_string)
 
         if (json_parse.status_code == 200) {
+            Swal.fire(
+                'Salida #' + salida,
+                'Datos consultados con éxito !',
+                'success'
+            )
+
             for (let i = 0; i < json_parse.datos.length; i++) {
                 let falta = "S/N"
                 if (json_parse.datos[i].falta != null) {
@@ -92,13 +135,34 @@ function llenar_tbody_conteo_marcaciones_pdf(salida) {
             document.getElementById("tbody_conteo_marcaciones_pdf").innerHTML = tbody_conteo_marcaciones
 
 
+        } else if (json_parse.status_code == 300) {
+            //alert("SIn datos")
+
+            Swal.fire(
+                'Salida ' + salida,
+                'No existen datos disponibles',
+                'info'
+            )
+        } else if (json_parse.status_code == 400) {
+            Swal.fire(
+                'Error 400',
+                json_parse.datos,
+                'error'
+            )
         } else {
-            alert("SIn datos")
+
+            console.log("Code : " + json_parse.status_code)
+                /*****ERROR 500*****/
+            token_invalited()
         }
 
-
     }).fail(function(error) {
-        console.log(error)
+        hideSpinner()
+        Swal.fire(
+            'Error server 400',
+            'Api Rest Fail BackEnd',
+            'error'
+        )
     })
 }
 
@@ -138,6 +202,9 @@ $(document).on("click", ".td_body_conteo_marcacion", function() {
     llenar_tbody_conteo_marcaciones_pdf(salida)
         //console.log(element)
 
+})
 
 
+$(document).on("change", "#date_conteo_marcaiones", function() {
+    document.getElementById("tbody_conteo_marcaciones").innerHTML = ""
 })

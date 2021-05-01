@@ -3,6 +3,7 @@ function consultar_datos_ant(fechaI, fechaF, horaI, horaF) {
 
     let tb_ant = "";
 
+    showSpinner()
 
     $.ajax({
         url: "http://localhost:3000/ant/" + fechaI + "/" + fechaF + "/" + horaI + "/" + horaF,
@@ -14,8 +15,11 @@ function consultar_datos_ant(fechaI, fechaF, horaI, horaF) {
         var json_string = JSON.stringify(datos)
         var json_parse = JSON.parse(json_string)
 
+        hideSpinner()
 
         if (json_parse.status_code == 200) {
+            sweetAlert("Reporte ANT", "Datos consultados con éxito", "success")
+
             for (var i = 0; i < json_parse.datos.length; i++) {
 
                 var cont = i
@@ -36,12 +40,15 @@ function consultar_datos_ant(fechaI, fechaF, horaI, horaF) {
 
             document.getElementById("tbody_ant").innerHTML = tb_ant
         } else if (json_parse.status_code == 300) {
-            alert("Datos vacios")
+            sweetAlert("Sin datos", "No existen datos disponibles", "info")
+        } else if (json_parse.status_code == 400) {
+            sweetAlert("Error 400", json_parse.datos, "error")
         } else {
-            alert("error api rest")
+            token_invalited()
         }
 
     }).fail(function(error) {
+        hideSpinner()
         alert(error)
     })
 }
@@ -58,3 +65,12 @@ $(document).on("click", "#btn_search_ant", function() {
     clearTablaAnt()
     consultar_datos_ant(fechaI, fechaF, horaI, horaF)
 })
+
+
+function sweetAlert(title, subtitle, boton) {
+    Swal.fire(
+        title,
+        subtitle,
+        boton
+    )
+}

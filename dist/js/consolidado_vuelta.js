@@ -1,4 +1,6 @@
 function consolidado_vueltas(fecha) {
+    showSpinner()
+
     var th_body = ""
     $.ajax({
         url: "http://localhost:3000/consolidado_vuelta/" + fecha + "/" + fecha,
@@ -7,11 +9,14 @@ function consolidado_vueltas(fecha) {
         method: "POST",
         data: getCookie("token")
     }).done(function(datos) {
+        hideSpinner()
         let json_string = JSON.stringify(datos)
         let json_parse = JSON.parse(json_string)
 
 
         if (json_parse.status_code == 200) {
+            sweetAlert("Consolidado por Vueltas", "Datos consultados con éxito !", "success")
+
             for (var i = 0; i < json_parse.datos.length; i++) {
                 var valor = json_parse.datos[i].valor
                 if (valor == null) {
@@ -33,12 +38,15 @@ function consolidado_vueltas(fecha) {
 
         } else if (json_parse.status_code == 300) {
             sweetAlert("Datos vacios", "Lo sentimos no existen datos disponibles", "info")
-        } else {
+        } else if (json_parse.status_code == 400) {
             sweetAlert("Error 400", json_parse.datos, error)
+        } else {
+            token_invalited()
         }
 
 
     }).fail(function(error) {
+        hideSpinner()
         alert(error)
     })
 }

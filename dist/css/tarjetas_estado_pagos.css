@@ -1,0 +1,80 @@
+.container_fechas {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.container_empresas_buses {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.input-fechas {
+    height: 2.7rem;
+}
+
+.div-select {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-datos {
+    height: 2.7rem;
+    flex-basis: calc(75% - 2px);
+}
+
+.label_sin_pagar {
+    margin-bottom: 0rem;
+}
+
+.select-datos-unidad {
+    height: 2.7rem;
+    flex-basis: calc(25% - 2px);
+}
+
+select {
+    width: 100%;
+    height: 100%;
+}
+
+.btn_buscar {
+    margin: 0;
+    padding: 0;
+    background-color: cornflowerblue;
+    color: white;
+    display: inline-block;
+    width: 20rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    border-style: none;
+    border-width: 0%;
+    outline: none;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.container_sin_pagar {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn_buscar:hover {
+    outline: none;
+}
+
+#sin_pagar {
+    margin-top: 0rem;
+    margin-right: 0.5rem;
+}
+
+.container-boton {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-items: center;
+}

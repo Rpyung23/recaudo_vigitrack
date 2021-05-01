@@ -22,10 +22,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-
-
     <link rel="stylesheet" href="../../dist/css/nav_hamburger_cerrar_sesion.css">
-
     <link rel="stylesheet" href="../../dist/css/nav-buses.css">
 
     <link rel="stylesheet" href="../../dist/css/despacho-tarjeta.css">
@@ -33,9 +30,11 @@
     <link rel="stylesheet" href="../../dist/css/botones.css">
     <link rel="stylesheet" href="../../dist/css/table_dark.css">
 
+    <link rel="stylesheet" href="../../dist/css/tarjetas_unidades_report.css">
+
+
     <link rel="stylesheet" href="../../dist/css/style_table.css">
     <link rel="stylesheet" href="../../dist/css/spinner.css">
-    <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
@@ -61,6 +60,7 @@
                     <button type="button" id="btn_cerrar_sesion" class="btn btn-danger">Cerrar Sesion</button>
                 </div>
 
+
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
@@ -82,7 +82,7 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU DE NAVEGACIÓN</li>
-                    <li class="treeview active">
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-bus"></i><span>Unidades</span>
                             <span class="pull-right-container">
@@ -90,10 +90,10 @@
                               </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class=" active "><a href="pages/unidades/despacho_tarjeta.html"><i class="fa fa-circle-o "></i>Despacho-Tarjeta</a></li>
-                            <li><a href="# "><i class="fa fa-circle-o "></i>Ruta por día</a></li>
-                            <li><a href="../unidades/recorrido.html"><i class="fa fa-circle-o"></i>Recorrido</a></li>
-                            <li><a href="../unidades/conteo_marcaciones.html"><i class="fa fa-circle-o"></i>Conteo Marcaciones</a></li>
+                            <li><a href="../unidades/despacho_tarjeta.html"><i class="fa fa-circle-o "></i>Despacho-Tarjeta</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o "></i>Ruta por día</a></li>
+                            <li><a href="../unidades/recorrido.html"><i class="fa fa-circle-o "></i>Recorrido</a></li>
+                            <li><a href="../unidades/conteo_marcaciones.html"><i class="fa fa-circle-o "></i>Conteo Marcaciones</a></li>
                             <li><a href="../unidades/tarjetas_trabajadas.html"><i class="fa fa-circle-o "></i>Tarjetas Trabajadas</a></li>
                         </ul>
                     </li>
@@ -105,7 +105,7 @@
                                 <i class="fa fa-angle-left pull-right "></i>
                               </span>
                         </a>
-                        <ul class="treeview-menu ">
+                        <ul class="treeview-menu">
                             <li>
                                 <a href="# "><i class="fa fa-circle-o "></i>Producción</a>
                             </li>
@@ -132,24 +132,24 @@
 
 
 
-                    <li class="treeview ">
-                        <a href="# ">
-                            <i class="fa fa-file-pdf-o "></i>
+                    <li class="treeview active">
+                        <a href="#">
+                            <i class="fa fa-file-pdf-o"></i>
                             <span>Reportes</span>
                             <span class="pull-right-container ">
                                 <i class="fa fa-angle-left pull-right "></i>
                               </span>
                         </a>
-                        <ul class="treeview-menu ">
-                            <li><a href="../report/tarjetas_detallada.html"><i class="fa fa-circle-o "></i>Tarjeta Detallada</a></li>
-                            <li><a href="../report/tarjetas_consolidada.html"><i class="fa fa-circle-o "></i>Tarjeta Consolidada</a></li>
-                            <li><a href="../report/ant.html"><i class="fa fa-circle-o "></i>ANT</a></li>
-                            <li><a href="../report/tarjetas_unidades.html"><i class="fa fa-circle-o "></i>Tarjetas Unidades</a></li>
-                            <li><a href="../report/consolidado_vueltas.html"><i class="fa fa-circle-o "></i>Consolidado Vueltas</a></li>
-                            <li><a href="../report/consolidado_minutos.html"><i class="fa fa-circle-o "></i>Consolidado Minutos</a></li>
-                            <li><a href="../report/tarjetas_controles.html"><i class="fa fa-circle-o "></i>Tarjetas Controles</a></li>
-                            <li><a href="../report/penalidad_segundos.html"><i class="fa fa-circle-o "></i>Penalidad Segundos</a></li>
-                            <li><a href="# "><i class="fa fa-circle-o "></i>Imprimir Recibo</a></li>
+                        <ul class="treeview-menu">
+                            <li><a href="../report/tarjetas_detallada.html"><i class="fa fa-circle-o"></i>Tarjeta Detallada</a></li>
+                            <li><a href="../report/tarjetas_consolidada.html"><i class="fa fa-circle-o"></i>Tarjeta Consolidada</a></li>
+                            <li><a href="../report/ant.html"><i class="fa fa-circle-o"></i>ANT</a></li>
+                            <li><a href="../report/tarjetas_unidades.html"><i class="fa fa-circle-o"></i>Tarjetas Unidades</a></li>
+                            <li><a href="../report/consolidado_vueltas.html"><i class="fa fa-circle-o"></i>Consolidado Vueltas</a></li>
+                            <li><a href="../report/consolidado_minutos.html"><i class="fa fa-circle-o"></i>Consolidado Minutos</a></li>
+                            <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Tarjetas Controles</a></li>
+                            <li><a href="../report/penalidad_segundos.html"><i class="fa fa-circle-o"></i>Penalidad Segundos</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>Imprimir Recibo</a></li>
                         </ul>
                     </li>
                     <li class="treeview ">
@@ -160,7 +160,7 @@
                               </span>
                         </a>
                         <ul class="treeview-menu ">
-                            <li><a href="../velocidad/historial.html"><i class="fa fa-circle-o "></i>Historial-Tarjeta</a></li>
+                            <li><a href="../velocidad/historial.html"><i class="fa fa-circle-o"></i>Historial-Tarjeta</a></li>
                             <li><a href="../velocidad/total.html"><i class="fa fa-circle-o "></i>Total</a></li>
                         </ul>
                     </li>
@@ -218,53 +218,41 @@
 
                         <div class="nav-header-consulta">
 
-                            <div class="container-nav-header-unidades">
-                                <select id="select_buses_global" class="input-round">
-                                </select>
-                                <input id="date_despacho_tarjeta" class="input-round input-round-fecha" type="date">
+                            <div class="container-nav-header-unidades-separater-between">
 
-                                <div id="btn_search_despacho_tarjeta" class="btn_circle btn_circle_search">
+                                <div class="container-nav-header-unidades">
+                                    <select id="select_buses_global" class="input-round">
+                                    </select>
+                                    <input id="date_tarjeta_unidades_inicio" class="input-round input-round-fecha" type="date">
+                                    <input id="date_tarjeta_unidades_fin" class="input-round input-round-fecha" type="date">
 
-                                    <i class="fa fa-search"></i>
-
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <br>
-
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-
-                                    <div class="box-body">
-                                        <table id="example2" class="table table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"># Tarjeta</th>
-                                                    <th scope="col">Estado</th>
-                                                    <th scope="col"># Vuelta</th>
-                                                    <th scope="col">Salida</th>
-                                                    <th scope="col">Llegada</th>
-                                                    <th scope="col">Frecuencia</th>
-                                                    <th scope="col">Acciónes</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbody_salidas">
-                                            </tbody>
-                                        </table>
+                                    <div class="check_container">
+                                        <input id="check_penalidad" class="check_penalidad" type="checkbox" name="check_penalidad">
+                                        <label name="check_penalidad" for="check_penalidad"><strong>Solo con Penalidad</strong></label na>
                                     </div>
-                                    <!-- /.box-body -->
+
+                                    <div id="btn_search_tarjeta_unidades" class="btn_circle btn_circle_search">
+
+                                        <i class="fa fa-search"></i>
+
+                                    </div>
                                 </div>
-                                <!-- /.box -->
+
+                                <div class="container-nav-header-unidades">
+
+                                    <div id="btn_print_tarjetas_unidades" class="btn_border_round btn_border_round_print">
+
+                                        <i class="fa fa-print"><span>Imprimir</span></i>
+
+                                    </div>
+
+                                </div>
+
 
                             </div>
-                            <!-- /.col -->
+
                         </div>
+
                     </section>
 
                     <!-- Main content -->
@@ -277,15 +265,20 @@
                                         <table id="example1" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Cod-Control</th>
-                                                    <th scope="col">Detalle Control</th>
-                                                    <th scope="col">Tiempo</th>
-                                                    <th scope="col">Marcación</th>
+                                                    <th scope="col">Salida</th>
+                                                    <th scope="col">Unidad</th>
+                                                    <th scope="col">Ruta</th>
+                                                    <th scope="col">Vuelta</th>
+                                                    <th scope="col">Fecha - Hora</th>
+                                                    <th scope="col">Control</th>
+                                                    <th scope="col">Hora Prog</th>
+                                                    <th scope="col">Hora Marc</th>
                                                     <th scope="col">Falta</th>
+                                                    <th scope="col">Penalidad</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbody_salidas_detalle">
+                                            <tbody id="tbody_tarjetas_unidades">
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -326,7 +319,9 @@
                     <!-- /.tab-pane -->
                 </div>
             </aside>
-
+            <!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
             <div class="control-sidebar-bg"></div>
 
         </div>
@@ -339,38 +334,24 @@
         <!-- DataTables -->
         <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js "></script>
         <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js "></script>
-
         <!-- AdminLTE App -->
-
-
         <script src="../../dist/js/adminlte.min.js "></script>
-        <script src="../../dist/js/cookie.js"></script>
         <script src="../../dist/js/spinner.js"></script>
 
+
+        <script src="../../dist/js/cookie.js"></script>
         <script src="../../dist/js/cerrar_sesion.js"></script>
         <script src="../../dist/js/rest_global.js"></script>
 
 
-
-        <script src="../../dist/js/despacho_tarjeta.js"></script>
-
-
-        <!-- AdminLTE for demo purposes -->
-        <!--<script src="dist/js/demo.js "></script>-->
-
-
+        <script src="../../dist/js/tarjetas_controles_resport.js"></script>
 
         <script>
             readCompanyName()
-            all_unidades()
-            vaciar_tabla_salida_m_tarjeta()
-            vaciar_tabla_despacho()
+            all_unidades_tarjetas_trabajadas()
         </script>
     </div>
+
 </body>
-
-</html>
-
-</html>
 
 </html>

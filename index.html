@@ -5,43 +5,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dist/css/login.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="dist/css/login.css">
+
+    <link rel="stylesheet" href="dist/css/spinner.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <title>Vigitrack</title>
 </head>
 
 <body>
-    <div class="container">
+
+    <div class="container-login">
 
         <img src="dist/img/logo.jpeg" alt="logo vigitrack" title="Vigitrack Cia.Ltda"></img>
 
-        <div class="container-login">
+        <div class="elemnts_login">
 
 
-            <div id="selector" class="selector">
-                <label id="label_compay" class="label_name_company">Seleccionar una Empresa..</label>
-                <i class="fa fa-chevron-down"></i>
+
+            <div id="selector" class="btn-group dropright">
+                <button id="btnCompany" type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Empresas...
+                </button>
+
+
+                <div class="dropdown-menu">
+
+                    <ul id="ul_options">
+
+                    </ul>
+
+                </div>
+
+
             </div>
 
-            <div id="options" class="options">
-                <ul id="ul_options">
 
-                </ul>
+
+
+
+
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Usuario</label>
+                <input type="text" class="form-control" id="input_user" aria-describedby="emailHelp" placeholder="Ingrese su usuario">
             </div>
 
 
 
-            <input id="input_user" type="text" placeholder="Ingrese su usuario">
-            <input id="input_pass" type="password" placeholder="Ingrese su contraseña">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Contraseña</label>
+                <input type="password" class="form-control" id="input_pass" aria-describedby="emailHelp" placeholder="Ingrese su contraseña">
+            </div>
+
+
             <button id="login">Ingresar</button>
         </div>
     </div>
+
+
+    <div id="loading" class="loading close">
+        <div class="spinner">
+        </div>
+    </div>
+
+
+
     <script src="bower_components/jquery/dist/jquery.min.js "></script>
     <script src="dist/js/cookie.js"></script>
     <script src="dist/js/login.js"></script>
+    <script src="dist/js/spinner.js"></script>
     <script>
         loadCompanys()
     </script>

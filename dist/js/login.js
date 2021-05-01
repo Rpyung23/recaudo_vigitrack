@@ -8,7 +8,7 @@ let objCompany = {
     act: ""
 }
 
-selector.addEventListener("click", function() {
+/**selector.addEventListener("click", function() {
 
     if (!bandera_visible) {
         options.className = ("options options-visible")
@@ -18,11 +18,11 @@ selector.addEventListener("click", function() {
         removeClass()
         bandera_visible = false
     }
-})
+})*/
 
 
 
-label.addEventListener("click", function() {
+/**label.addEventListener("click", function() {
 
     if (!bandera_visible) {
         options.className = ("options options-visible")
@@ -32,7 +32,7 @@ label.addEventListener("click", function() {
         removeClass()
         bandera_visible = false
     }
-})
+})*/
 
 function removeClass() {
     options.className = ("options")
@@ -41,6 +41,7 @@ function removeClass() {
 
 
 function loadCompanys() {
+    showSpinner()
 
     let li_ = "";
 
@@ -55,8 +56,13 @@ function loadCompanys() {
             li_ += `<li class="options_item" key = "${json_parse[i].key}" act="${json_parse[i].act}" >${json_parse[i].name}</li>`
         }
         document.getElementById("ul_options").innerHTML = li_
-    }).fail(function(error) {
 
+        console.log("done")
+        hideSpinner()
+
+    }).fail(function(error) {
+        console.log("error")
+        hideSpinner()
     })
 }
 
@@ -82,18 +88,22 @@ $(document).on("click", ".options_item", function() {
 
     console.log(objCompany)
 
-    document.getElementById("label_compay").innerText = objCompany.name
-    removeClass()
+    document.getElementById("btnCompany").innerText = objCompany.name.replace("Cooperativa", "")
+
+    //removeClass()
 
 })
 
 $(document).on("click", "#login", function() {
+
+    showSpinner()
+
     var user = document.getElementById("input_user").value
     var pass = document.getElementById("input_pass").value
     var datos = {
         user: user,
         pass: pass,
-        child: objCompany.child
+        child: objCompany.act
     }
 
     $.ajax({
@@ -104,18 +114,30 @@ $(document).on("click", "#login", function() {
         var json_string = JSON.stringify(datos)
         var json_parse = JSON.parse(json_string)
 
+
+        hideSpinner()
+
         if (json_parse.code == 200) {
             /**CREATE COOKIES **/
 
-            createCookie(json_parse.token)
+            createCookie(json_parse.token, json_parse.datos_extras)
+
             location.href = "dashboard.html"
 
-        } else {
-            alert(json_parse.msm)
+        } else if (json_parse.code == 400) {
+            SweertAlert("Login", "Credenciales no validas", "error")
         }
-
     }).fail(function(error) {
-        alert(error)
+        hideSpinner()
+        alert("Lo sentimos Fail")
     })
 
 })
+
+function SweertAlert(title, texto, type) {
+    Swal.fire(
+        title,
+        texto,
+        type
+    )
+}

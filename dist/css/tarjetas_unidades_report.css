@@ -11,9 +11,10 @@
     background-color: blue;
 }
 
-.check_container span {
+.check_container label {
     margin-right: 1rem;
     margin-left: 0.5rem;
+    margin-bottom: 0%;
     display: flex;
     justify-content: center;
     align-items: center;

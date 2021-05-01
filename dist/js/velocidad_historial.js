@@ -20,11 +20,13 @@ function getFecha_dd_mm_yyyy() {
 }
 
 function all_historial_velocidad(salida, unidad, velocidad, fecha) {
+    showSpinner()
+
     clearTablaVelocidadHistorial()
     let tbody_salidas = ""
 
     var url_ = "http://localhost:3000/velocidad_historial/" + salida + "/" + velocidad + "/" + fecha + "/" + unidad
-    console.log(url_)
+        //console.log(url_)
 
     $.ajax({
         crossDomain: true,
@@ -34,6 +36,17 @@ function all_historial_velocidad(salida, unidad, velocidad, fecha) {
         method: "POST",
         data: getCookie("token")
     }).done(function(json_response) {
+
+        hideSpinner()
+
+
+        Swal.fire(
+            'Salida N° ' + salida,
+            'Datos consultados con exito!',
+            'success'
+        )
+
+
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)
 
@@ -43,6 +56,7 @@ function all_historial_velocidad(salida, unidad, velocidad, fecha) {
 
 
                 tbody_salidas += `<tr role="row" class="even">
+                <td>${salida}</td>
                 <td>${json_parse.datos[i].hora}</td>
                 <td>${json_parse.datos[i].lat}</td>
                 <td>${json_parse.datos[i].lng}</td>
@@ -54,10 +68,23 @@ function all_historial_velocidad(salida, unidad, velocidad, fecha) {
             //console.log(select_buses)
             document.getElementById("tbody_historial_velocidad").innerHTML = tbody_salidas
 
+        } else if (json_parse.status_code == 300) {
+            Swal.fire(
+                'Salida N° ' + salida,
+                'No existen datos disponibles',
+                'info'
+            )
+        } else if (json_parse.status_code == 400) {
+            Swal.fire(
+                'Error 400',
+                json_parse.datos,
+                'error'
+            )
         } else {
-            console.log("No se puede cargar las unidades")
+            token_invalited()
         }
     }).fail(function(error) {
+        hideSpinner()
         console.log(error)
     })
 }
@@ -65,6 +92,8 @@ function all_historial_velocidad(salida, unidad, velocidad, fecha) {
 
 function all_salidas_por_unidad(unidad, fecha) {
     let tbody_salidas = ""
+
+    showSpinner()
 
     $.ajax({
         crossDomain: true,
@@ -74,6 +103,15 @@ function all_salidas_por_unidad(unidad, fecha) {
         method: "POST",
         data: getCookie("token")
     }).done(function(json_response) {
+
+        hideSpinner()
+
+        Swal.fire(
+            'Unidad número ' + unidad,
+            'Datos consultados con exito!',
+            'success'
+        )
+
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)
 
@@ -88,17 +126,32 @@ function all_salidas_por_unidad(unidad, fecha) {
                 <td>${json_parse.datos[i].hora_lleg}</td>
                 <td>${json_parse.datos[i].detalle_ruta}</td>
                 <td>${0}</td>
+                <td><div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn_see_tarjeta btn btn-primary" id_salida=${json_parse.datos[i].salida}><i class="fa fa-eye"></i></button>
+              </div></td>
             </tr>`
             }
 
             //console.log(select_buses)
             document.getElementById("tbody_salidas_velocidad").innerHTML = tbody_salidas
 
+        } else if (json_parse.status_code == 300) {
+            Swal.fire(
+                'Unidad número' + unidad,
+                'No existen datos disponibles',
+                'info'
+            )
+        } else if (json_parse.status_code == 400) {
+            Swal.fire(
+                'Error 400',
+                json_parse.datos,
+                'error'
+            )
         } else {
-            console.log("No se puede cargar las unidades")
+            token_invalited()
         }
     }).fail(function(error) {
-
+        hideSpinner()
     })
 }
 
@@ -143,21 +196,18 @@ $(document).on("click", "#btn_search_tarjetas_velocidad", function() {
             })
 
 
-
-
-
         } else {
             Swal.fire(
-                'Bus numero ' + unidad,
-                'No válido',
-                'error'
+                'Bus vacío',
+                'Por favor seleccione una Unidad',
+                'warning'
             )
         }
     } else {
         Swal.fire(
             'Fecha no válida',
-            '',
-            'error'
+            'Por favor ingrese una fecha válida',
+            'warning'
         )
     }
 })

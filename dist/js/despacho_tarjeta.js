@@ -7,63 +7,93 @@ function tabla_despacho() {
 
     var url_ = "http://localhost:3000/salidas_unidad_unidad/" + option_unidad + "/" + fecha + "/" + fecha
 
-    console.log(url_)
-    $.ajax({
-        crossDomain: true,
-        url: url_,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        method: "POST",
-        data: getCookie("token")
-    }).done(function(json_response) {
-        var json_string = JSON.stringify(json_response)
-        var json_parse = JSON.parse(json_string)
+
+    if (fecha.length > 0) {
+        showSpinner()
+
+        $.ajax({
+            crossDomain: true,
+            url: url_,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            method: "POST",
+            data: getCookie("token")
+        }).done(function(json_response) {
+            hideSpinner()
+            var json_string = JSON.stringify(json_response)
+            var json_parse = JSON.parse(json_string)
 
 
-        if (json_parse.status_code == 200) {
+            if (json_parse.status_code == 200) {
+                Swal.fire(
+                    'Unidad ' + option_unidad,
+                    'Los datos consultados con exito',
+                    'success'
+                )
 
 
-            for (let i = 0; i < json_parse.datos.length; i++) {
-                let span = ""
-                if (json_parse.datos[i].estado == 3) {
+                for (let i = 0; i < json_parse.datos.length; i++) {
+                    let span = ""
+                    if (json_parse.datos[i].estado == 3) {
 
-                    span = `<span class="label label-success">Finalizado</span>`
-                } else if (json_parse.datos[i].estado == 2) {
-                    span = `<span class="label label-primary">Trabajando</span>`
-                } else {
-                    span = `<span class="label label-default">Pendiente</span>`
+                        span = `<span class="label label-success">Finalizado</span>`
+                    } else if (json_parse.datos[i].estado == 2) {
+                        span = `<span class="label label-primary">Trabajando</span>`
+                    } else {
+                        span = `<span class="label label-default">Pendiente</span>`
+                    }
+
+                    tabla_salidas += `<tr role="row" class="even">
+                    <td>${json_parse.datos[i].id_salida}</td>
+                    <td>${span}</td>
+                    <td>${json_parse.datos[i].num_vuelta}</td>
+                    <td>${json_parse.datos[i].salida}</td>
+                    <td>${json_parse.datos[i].llegada}</td>
+                    <td>${json_parse.datos[i].frecuencia}</td>
+                    <td><div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn_see_tarjeta btn btn-primary" id_salida=${json_parse.datos[i].id_salida}><i class="fa fa-eye"></i></button>
+                  </div></td>
+                </tr>`
+
+                    //console.log(tabla_salidas)
                 }
 
-                tabla_salidas += `<tr role="row" class="even">
-                <td>${json_parse.datos[i].id_salida}</td>
-                <td>${span}</td>
-                <td>${json_parse.datos[i].num_vuelta}</td>
-                <td>${json_parse.datos[i].salida}</td>
-                <td>${json_parse.datos[i].llegada}</td>
-                <td>${json_parse.datos[i].frecuencia}</td>
-                <td><div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn_see_tarjeta btn btn-primary" id_salida=${json_parse.datos[i].id_salida}><i class="fa fa-eye"></i></button>
-              </div></td>
-            </tr>`
 
-                //console.log(tabla_salidas)
+                var element = document.getElementById("tbody_salidas")
+                element.innerHTML = tabla_salidas
+
+            } else if (json_parse.status_code == 300) {
+                Swal.fire(
+                    'Unidad ' + option_unidad,
+                    'No existen datos disponibles',
+                    'info'
+                )
+            } else if (json_parse.status_code == 400) {
+                Swal.fire(
+                    'Error 400',
+                    json_parse.datos,
+                    'error'
+                )
+            } else {
+                token_invalited()
             }
-
+        }).fail(function(error) {
+            hideSpinner()
             Swal.fire(
-                'Unidad ' + option_unidad,
-                'Los datos consultados con exito',
-                'success'
+                'Error server',
+                'Error Api Rest BackEnd',
+                'error'
             )
+        })
+    } else {
+        Swal.fire(
+            'Fecha no válida',
+            'Por favor ingrese una fecha válida',
+            'info'
+        )
+    }
 
-            var element = document.getElementById("tbody_salidas")
-            element.innerHTML = tabla_salidas
 
-        } else {
-            console.log("No se puede cargar las unidades")
-        }
-    }).fail(function(error) {
-        alert(error)
-    })
 }
 
 
@@ -76,6 +106,7 @@ function vaciar_tabla_despacho() {
 }
 
 function tabla_despacho_salida_m_tarjeta(salida) {
+    showSpinner()
 
     let tabla_salidas = ""
     let contador = 0;
@@ -92,7 +123,7 @@ function tabla_despacho_salida_m_tarjeta(salida) {
     }).done(function(json_response) {
         var json_string = JSON.stringify(json_response)
         var json_parse = JSON.parse(json_string)
-
+        hideSpinner()
 
         if (json_parse.status_code == 200) {
 
@@ -118,6 +149,7 @@ function tabla_despacho_salida_m_tarjeta(salida) {
                 contador++
             }
 
+
             location.href = "#example1"
 
             Swal.fire(
@@ -126,13 +158,25 @@ function tabla_despacho_salida_m_tarjeta(salida) {
                 'success'
             )
 
-
             document.getElementById("tbody_salidas_detalle").innerHTML = tabla_salidas
 
+        } else if (json_parse.status_code == 300) {
+            Swal.fire(
+                'Tarjeta ' + salida,
+                'No existen datos disponibles',
+                'info'
+            )
+        } else if (json_parse.status_code == 400) {
+            Swal.fire(
+                'Error 400',
+                json_parse.datos,
+                'error'
+            )
         } else {
-            console.log("No se puede cargar las unidades")
+            token_invalited()
         }
     }).fail(function(error) {
+        hideSpinner()
         alert(error)
     })
 }

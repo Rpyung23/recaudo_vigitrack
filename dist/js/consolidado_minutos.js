@@ -1,5 +1,6 @@
 function consolidado_vueltas(fecha) {
     var th_body = ""
+    showSpinner()
     $.ajax({
         url: "http://localhost:3000/consolidado_minutos/" + fecha,
         contentType: "application/json; charset=utf-8",
@@ -9,9 +10,11 @@ function consolidado_vueltas(fecha) {
     }).done(function(datos) {
         let json_string = JSON.stringify(datos)
         let json_parse = JSON.parse(json_string)
-
+        hideSpinner()
 
         if (json_parse.status_code == 200) {
+            sweetAlert("Consolidado Minutos", "Datos consultados con éxito !", "success")
+
             for (var i = 0; i < json_parse.datos.length; i++) {
                 var valor = json_parse.datos[i].valor
                 if (valor == null) {
@@ -34,14 +37,17 @@ function consolidado_vueltas(fecha) {
             document.getElementById("tbody_consolidado_vueltas").innerHTML = th_body
 
         } else if (json_parse.status_code == 300) {
-            sweetAlert("Datos vacios", "Lo sentimos no existen datos disponibles", "info")
-        } else {
+            sweetAlert("Datos vacíos", "Lo sentimos no existen datos disponibles", "info")
+        } else if (json_parse.status_code == 400) {
             sweetAlert("Error 400", json_parse.datos, error)
+        } else {
+            token_invalited()
         }
 
 
     }).fail(function(error) {
         alert(error)
+        hideSpinner()
     })
 }
 

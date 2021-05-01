@@ -20,21 +20,28 @@
     <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
 
 
+
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-
-
-    <link rel="stylesheet" href="../../dist/css/nav_hamburger_cerrar_sesion.css">
-
-    <link rel="stylesheet" href="../../dist/css/nav-buses.css">
+    <link rel="stylesheet" href="../../dist/css/velocidad.css">
 
     <link rel="stylesheet" href="../../dist/css/despacho-tarjeta.css">
     <link rel="stylesheet" href="../../dist/css/header_nav_consulta.css">
     <link rel="stylesheet" href="../../dist/css/botones.css">
     <link rel="stylesheet" href="../../dist/css/table_dark.css">
+    <link rel="stylesheet" href="../../dist/css/aside_buses.css">
 
     <link rel="stylesheet" href="../../dist/css/style_table.css">
+
+
+
     <link rel="stylesheet" href="../../dist/css/spinner.css">
+    <link rel="stylesheet" href="../../dist/css/tarjetas_estado_pagos.css">
+    <link rel="stylesheet" href="../../dist/css/nav_hamburger_cerrar_sesion.css">
+
+
+
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -46,20 +53,26 @@
         </div>
     </div>
 
+
     <div class="wrapper">
 
         <header class="main-header">
 
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+
+
                 <div class="container_hamburger_cerrar_sesion">
 
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
 
+
                     <button type="button" id="btn_cerrar_sesion" class="btn btn-danger">Cerrar Sesion</button>
                 </div>
+
 
             </nav>
         </header>
@@ -82,30 +95,31 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU DE NAVEGACIÓN</li>
-                    <li class="treeview active">
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-bus"></i><span>Unidades</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
-                              </span>
+                            </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class=" active "><a href="pages/unidades/despacho_tarjeta.html"><i class="fa fa-circle-o "></i>Despacho-Tarjeta</a></li>
+                            <li><a href="../unidades/despacho_tarjeta.html"><i class="fa fa-circle-o "></i>Despacho-Tarjeta</a></li>
                             <li><a href="# "><i class="fa fa-circle-o "></i>Ruta por día</a></li>
                             <li><a href="../unidades/recorrido.html"><i class="fa fa-circle-o"></i>Recorrido</a></li>
                             <li><a href="../unidades/conteo_marcaciones.html"><i class="fa fa-circle-o"></i>Conteo Marcaciones</a></li>
-                            <li><a href="../unidades/tarjetas_trabajadas.html"><i class="fa fa-circle-o "></i>Tarjetas Trabajadas</a></li>
+                            <li><a href="../unidades/tarjetas_trabajadas.html"><i class="fa fa-circle-o "></i>Tarjetas
+                                    Trabajadas</a></li>
                         </ul>
                     </li>
-                    <li class="treeview ">
+                    <li class="treeview">
                         <a href="# ">
-                            <i class="fa fa-search "></i>
+                            <i class="fa fa-search"></i>
                             <span>Consultas</span>
-                            <span class="pull-right-container ">
-                                <i class="fa fa-angle-left pull-right "></i>
-                              </span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
-                        <ul class="treeview-menu ">
+                        <ul class="treeview-menu">
                             <li>
                                 <a href="# "><i class="fa fa-circle-o "></i>Producción</a>
                             </li>
@@ -120,8 +134,8 @@
                             <i class="fa fa-user-plus "></i>
                             <span>Conteo de Pasajeros</span>
                             <span class="pull-right-container ">
-                                                <i class="fa fa-angle-left pull-right "></i>
-                                            </span>
+                                <i class="fa fa-angle-left pull-right "></i>
+                            </span>
                         </a>
                         <ul class="treeview-menu ">
                             <li><a href="../conteo/general.html"><i class="fa fa-circle-o "></i>General</a></li>
@@ -138,7 +152,7 @@
                             <span>Reportes</span>
                             <span class="pull-right-container ">
                                 <i class="fa fa-angle-left pull-right "></i>
-                              </span>
+                            </span>
                         </a>
                         <ul class="treeview-menu ">
                             <li><a href="../report/tarjetas_detallada.html"><i class="fa fa-circle-o "></i>Tarjeta Detallada</a></li>
@@ -152,28 +166,28 @@
                             <li><a href="# "><i class="fa fa-circle-o "></i>Imprimir Recibo</a></li>
                         </ul>
                     </li>
-                    <li class="treeview ">
+                    <li class="treeview">
                         <a href="# ">
                             <i class="fa fa-dashboard "></i> <span>Velocidad</span>
                             <span class="pull-right-container ">
                                 <i class="fa fa-angle-left pull-right "></i>
-                              </span>
+                            </span>
                         </a>
-                        <ul class="treeview-menu ">
-                            <li><a href="../velocidad/historial.html"><i class="fa fa-circle-o "></i>Historial-Tarjeta</a></li>
+                        <ul class="treeview-menu">
+                            <li><a href="../velocidad/historial.html"><i class="fa fa-circle-o"></i>Historial-Tarjeta</a></li>
                             <li><a href="../velocidad/total.html"><i class="fa fa-circle-o "></i>Total</a></li>
                         </ul>
                     </li>
-                    <li class="treeview ">
+                    <li class="treeview active">
                         <a href="# ">
                             <i class="fa fa-sticky-note-o "></i> <span>Tarjetas</span>
                             <span class="pull-right-container ">
                                 <i class="fa fa-angle-left pull-right "></i>
-                              </span>
+                            </span>
                         </a>
-                        <ul class="treeview-menu ">
+                        <ul class="treeview-menu active">
                             <li><a href="# "><i class="fa fa-circle-o "></i>Generar</a></li>
-                            <li><a href="../tarjeta/estados_pagos.html"><i class="fa fa-circle-o "></i>Estados-Pagos</a></li>
+                            <li class="active"><a href="# "><i class="fa fa-circle-o "></i>Estados-Pagos</a></li>
                             <li><a href="# "><i class="fa fa-circle-o "></i>Valores</a></li>
                         </ul>
                     </li>
@@ -182,7 +196,7 @@
                             <i class="fa fa-money "></i> <span>Recaudo</span>
                             <span class="pull-right-container ">
                                 <i class="fa fa-angle-left pull-right "></i>
-                              </span>
+                            </span>
                         </a>
                         <ul class="treeview-menu ">
                             <li><a href="# "><i class="fa fa-circle-o "></i>Unidades</a></li>
@@ -194,7 +208,7 @@
                             <i class="fa fa-university "></i> <span>Cobranzas</span>
                             <span class="pull-right-container ">
                                 <i class="fa fa-angle-left pull-right "></i>
-                              </span>
+                            </span>
                         </a>
                         <ul class="treeview-menu ">
                             <li><a href="# "><i class="fa fa-circle-o "></i>Anular</a></li>
@@ -211,93 +225,114 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
+
+
             <div>
                 <div>
-                    <section class="content-header">
-
-                        <div class="nav-header-consulta">
-
-                            <div class="container-nav-header-unidades">
-                                <select id="select_buses_global" class="input-round">
-                                </select>
-                                <input id="date_despacho_tarjeta" class="input-round input-round-fecha" type="date">
-
-                                <div id="btn_search_despacho_tarjeta" class="btn_circle btn_circle_search">
-
-                                    <i class="fa fa-search"></i>
-
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <br>
-
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-
-                                    <div class="box-body">
-                                        <table id="example2" class="table table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"># Tarjeta</th>
-                                                    <th scope="col">Estado</th>
-                                                    <th scope="col"># Vuelta</th>
-                                                    <th scope="col">Salida</th>
-                                                    <th scope="col">Llegada</th>
-                                                    <th scope="col">Frecuencia</th>
-                                                    <th scope="col">Acciónes</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbody_salidas">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <!-- /.box -->
-
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                    </section>
 
                     <!-- Main content -->
                     <section class="content">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
 
-                                    <div class="box-body">
-                                        <table id="example1" class="table table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Cod-Control</th>
-                                                    <th scope="col">Detalle Control</th>
-                                                    <th scope="col">Tiempo</th>
-                                                    <th scope="col">Marcación</th>
-                                                    <th scope="col">Falta</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbody_salidas_detalle">
-                                            </tbody>
-                                        </table>
+
+
+
+                        <div class="content-velocidad">
+
+                            <div class="aside-buses">
+
+                                <ul class="sidebar-menu" data-widget="tree">
+
+                                    <li class="header-aside" style="color: white;border-top-left-radius: 1rem;border-top-right-radius: 1rem">
+                                        <h4 style="padding: 0%;margin: 0%;">Parámetros de Consulta</h4>
+                                    </li>
+
+                                    <div class="div_container_buses">
+
+                                        <div class="container-datos-top">
+                                            <div style="margin-top: 1rem;">
+                                                <div class="container_fechas">
+                                                    <span>Fecha Inicial</span>
+                                                    <input type="date" class="input-fechas" id="id_fechaI_tarjeta_estados_pagos">
+                                                </div>
+                                                <div class="container_fechas">
+                                                    <span>Fecha Final</span>
+                                                    <input type="date" class="input-fechas" id="id_fechaF_tarjeta_estados_pagos">
+                                                </div>
+                                            </div>
+
+                                            <div class="container_empresas_buses">
+
+                                                <div class="div-select">
+
+                                                    <div class="select-datos">
+                                                        <select name="" id="select_sub_companys">
+                                                            <option value="">TODAS EMPRESAS</option>
+                                                        </select>
+                                                    </div>
+
+
+                                                    <div class="select-datos-unidad">
+                                                        <select name="" id="selec_unidades_tarjeta" style="text-align: center;">
+                                                            <option value=""></option>
+                                                        </select>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="container_sin_pagar">
+                                                    <input id="sin_pagar" type="checkbox" for="sin_pagar" name="sin_pagar">
+                                                    <label class="label_sin_pagar" for="sin_pagar" name="sin_pagar">Solo Pendientes</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="container-boton">
+                                            <button id="id_btn_consultar" class="container_empresas_buses btn_buscar">Buscar tarjetas</button>
+                                        </div>
+
                                     </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <!-- /.box -->
+
+                                </ul>
 
                             </div>
-                            <!-- /.col -->
+
+                            <div class="content-tablas">
+                                <div class="row">
+                                    <div class="col-xs-12" style="margin-top: 1rem;">
+                                        <div class="box">
+
+                                            <div class="box-body">
+                                                <table id="example2" class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col"># ID</th>
+                                                            <th scope="col">Unidad</th>
+                                                            <th scope="col">Emisión</th>
+                                                            <th scope="col">Monto ($)</th>
+                                                            <th scope="col">Empresa</th>
+                                                            <th scope="col">Estado</th>
+                                                            <th scope="col">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody_tarjetas_estados_pagos">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.row -->
+
+
                     </section>
+
+
                 </div>
 
             </div>
@@ -309,7 +344,31 @@
                 <!-- Create the tabs -->
                 <ul class="nav nav-tabs nav-justified control-sidebar-tabs ">
                     <li><a href="#control-sidebar-home-tab " data-toggle="tab "><i class="fa fa-home "></i></a></li>
-                    <li><a href="#control-sidebar-settings-tab " data-toggle="tab "><i class="fa fa-gears "></i></a></li>
+                    <li><a href="#control-sidebar-settings-tab " data-toggle="tab "><i class="fa fa-gears "></i></a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content ">
+                    <!-- Home tab content -->
+                    <div class="tab-pane " id="control-sidebar-home-tab ">
+
+                    </div>
+                    <!-- /.tab-pane -->
+
+                    <!-- Settings tab content -->
+                    <div class="tab-pane " id="control-sidebar-settings-tab ">
+
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+            </aside>
+
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Create the tabs -->
+                <ul class="nav nav-tabs nav-justified control-sidebar-tabs ">
+                    <li><a href="#control-sidebar-home-tab " data-toggle="tab "><i class="fa fa-home "></i></a></li>
+                    <li><a href="#control-sidebar-settings-tab " data-toggle="tab "><i class="fa fa-gears "></i></a>
+                    </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content ">
@@ -332,45 +391,35 @@
         </div>
         <!-- ./wrapper -->
 
-        <!-- jQuery 3 -->
-        <script src="../../bower_components/jquery/dist/jquery.min.js "></script>
-        <!-- Bootstrap 3.3.7 -->
-        <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js "></script>
-        <!-- DataTables -->
-        <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js "></script>
-        <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js "></script>
 
-        <!-- AdminLTE App -->
-
-
-        <script src="../../dist/js/adminlte.min.js "></script>
-        <script src="../../dist/js/cookie.js"></script>
-        <script src="../../dist/js/spinner.js"></script>
-
-        <script src="../../dist/js/cerrar_sesion.js"></script>
-        <script src="../../dist/js/rest_global.js"></script>
-
-
-
-        <script src="../../dist/js/despacho_tarjeta.js"></script>
-
-
-        <!-- AdminLTE for demo purposes -->
-        <!--<script src="dist/js/demo.js "></script>-->
-
-
-
-        <script>
-            readCompanyName()
-            all_unidades()
-            vaciar_tabla_salida_m_tarjeta()
-            vaciar_tabla_despacho()
-        </script>
     </div>
+
+
+    <!-- jQuery 3 -->
+    <script src="../../bower_components/jquery/dist/jquery.min.js "></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js "></script>
+    <!-- DataTables -->
+    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js "></script>
+    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js "></script>
+    <!--<script src="../../dist/js/velocidad_historial.js"></script>-->
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js "></script>
+    <script src="../../dist/js/cookie.js"></script>
+    <script src="../../dist/js/spinner.js"></script>
+
+    <script src="../../dist/js/cerrar_sesion.js"></script>
+    <script src="../../dist/js/rest_global.js"></script>
+    <script src="../../dist/js/estados_pagos.js"></script>
+
+
+
+    <script>
+        readCompanyName()
+        all_unidades_tarjetas()
+        all_sub_companys(true)
+        fechasMinMax()
+    </script>
 </body>
-
-</html>
-
-</html>
 
 </html>

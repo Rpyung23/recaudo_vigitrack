@@ -1,3 +1,6 @@
+let datos_recorrido = []
+let url_aux = ""
+
 function recorrido() {
     showSpinner()
 
@@ -15,8 +18,8 @@ function recorrido() {
     if (fecha.length > 0) {
         if (horaF > horaI) {
             var url_ = "http://localhost:3000/recorrido/" + option_unidad + "/" + fecha + "/" + horaI + "/" + horaF
-
-            //console.log(url_)
+            url_aux = url_
+                //console.log(url_)
             $.ajax({
                 crossDomain: true,
                 url: url_,
@@ -33,6 +36,7 @@ function recorrido() {
 
                 if (json_parse.status_code == 200) {
 
+                    datos_recorrido = []
 
                     for (let i = 0; i < json_parse.datos.length; i++) {
 
@@ -46,6 +50,15 @@ function recorrido() {
                         <td>${json_parse.datos[i].velocidad}</td>
                     </tr>`
 
+
+                        var obj = {
+                            unidad: json_parse.datos[i].id_vehi,
+                            fecha: json_parse.datos[i].fecha,
+                            lat: json_parse.datos[i].lat,
+                            lng: json_parse.datos[i].lng,
+                            vel: json_parse.datos[i].velocidad
+                        }
+                        datos_recorrido.push(obj)
                         contador++
                     }
 
@@ -128,4 +141,14 @@ $(document).on("change", "#time_recorrido_start", function() {
 
 $(document).on("change", "#time_recorrido_end", function() {
     clearTable_recorrido()
+})
+
+
+$(document).on("click", "#btn_draw_on_map", function() {
+    /*var crypt = CryptoJS.MD5(JSON.stringify(datos_recorrido))
+    var decrypt = CryptoJS.AES.decrypt("MD5", crypt)
+    console.log(decrypt)*/
+    var locatio_ = window.open("../../pages/map/mapa.html?datos=" + url_aux, "_blank")
+
+    locatio_.focus()
 })

@@ -1,3 +1,7 @@
+let datos_historial = []
+let url_aux = ""
+let unidad_glo = ""
+
 function getFecha_dd_mm_yyyy() {
 
     var fecha_ = new Date()
@@ -21,12 +25,19 @@ function getFecha_dd_mm_yyyy() {
 
 function all_historial_velocidad(salida, unidad, velocidad, fecha) {
     showSpinner()
-
+    unidad_glo = unidad
     clearTablaVelocidadHistorial()
     let tbody_salidas = ""
 
     var url_ = "http://localhost:3000/velocidad_historial/" + salida + "/" + velocidad + "/" + fecha + "/" + unidad
         //console.log(url_)
+
+
+    url_aux = url_
+
+
+    datos_historial = []
+
 
     $.ajax({
         crossDomain: true,
@@ -36,6 +47,7 @@ function all_historial_velocidad(salida, unidad, velocidad, fecha) {
         method: "POST",
         data: getCookie("token")
     }).done(function(json_response) {
+
 
         hideSpinner()
 
@@ -54,6 +66,17 @@ function all_historial_velocidad(salida, unidad, velocidad, fecha) {
             console.log("ok")
             for (let i = 0; i < json_parse.datos.length; i++) {
 
+
+
+                var obj = {
+                    unidad: unidad,
+                    lat: json_parse.datos[i].lat,
+                    lng: json_parse.datos[i].lng,
+                    velocidad: json_parse.datos[i].velocidad,
+                    hora: json_parse.datos[i].hora
+                }
+
+                datos_historial.push(obj)
 
                 tbody_salidas += `<tr role="row" class="even">
                 <td>${salida}</td>
@@ -244,3 +267,16 @@ $(document).on("change", "#date_despacho_tarjeta", function() {
 })
 
 //localhost:3000/tarjetas_trabajadas_unidad/uambatena1198/3/2021-03-25/2021-03-25
+
+$(document).on("click", "#btn_print_recorrido_historial", function() {
+
+
+
+    if (datos_historial.length > 0) {
+        var locatio_ = window.open("../../pages/map/mapa.html?datos=" + btoa(url_aux) + "&bandera=h&unidad=" + unidad_glo, "_blank")
+
+        locatio_.focus()
+    }
+
+
+})

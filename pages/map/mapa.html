@@ -1,3 +1,15 @@
+<script>
+    /**OBTENFO LOS VALORES DE LA URL**/
+    var valores = window.location.search
+        /**BUSCO EL VALOR DEL DATO (POR TAG ("datos=" --> "datos"))**/
+    var urlParams = new URLSearchParams(valores)
+        /**DECODIFICO EL ***/
+    let datos_url = atob(urlParams.get('datos'))
+    let bandera = urlParams.get("bandera")
+    let unidad = urlParams.get("unidad")
+    let datos_historial = []
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +23,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 
     <link rel="stylesheet" href="../../dist/css/mapa.css">
+
+    <script src="../../bower_components/jquery/dist/jquery.min.js "></script>
+    <script src="../../dist/js/cookie.js"></script>
+
 </head>
 
 <body>
@@ -23,7 +39,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
     <script>
-        var map = L.map('map', {
+        let map = L.map('map', {
             center: [-1.831239, -78.183406],
             zoom: 7
         })
@@ -33,6 +49,106 @@
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         }).addTo(map)
     </script>
+
+    <script>
+        let ajax = $.ajax({
+            url: datos_url,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            method: "POST",
+            data: getCookie("token")
+        })
+
+        if (bandera == "r") {
+
+            ajax.done(function(datos) {
+                var json_string = JSON.stringify(datos)
+                var json_parse = JSON.parse(json_string)
+                console.log(json_parse)
+
+                if (json_parse.status_code == 200) {
+                    var polyline_ = L.polyline(json_parse.datos, {
+                            color: 'green'
+                        })
+                        .addTo(map)
+                    map.fitBounds(polyline_.getBounds())
+                } else {
+                    alert("Error Mapa - ApiRest")
+                }
+
+
+            }).fail(function(xthp, error) {
+
+                alert("ERROR EN API-MAP")
+            })
+
+        } else {
+
+            ajax.done(function(datos) {
+                var json_string = JSON.stringify(datos)
+                var json_parse = JSON.parse(json_string)
+                console.log(json_parse)
+
+                if (json_parse.status_code == 200) {
+
+                    let obj = []
+
+                    datos_historial = []
+                    for (var i = 0; i < json_parse.datos.length; i++) {
+
+
+                        var latlng = [json_parse.datos[i].lat, json_parse.datos[i].lng]
+
+                        obj[i] = latlng
+
+                        datos_historial[i] = json_parse.datos[i]
+
+                        //L.marker(obj).addTo(map)
+                    }
+
+
+                    /*var polyline_ = L.polyline(obj, {
+                            color: 'red'
+                        })
+                        .addTo(map)
+
+                    map.fitBounds(polyline_.getBounds())*/
+
+                    var myIcon = L.icon({
+                        iconUrl: '../../dist/img/marker_bus_velocidad_historial.png', //'https://img.icons8.com/emoji/48/000000/oncoming-bus.png',
+                        iconSize: [38, 38]
+                    });
+
+
+                    for (var i = 0; i < obj.length; i++) {
+                        var marker = L.marker(obj[i], {
+                            icon: myIcon
+                        })
+
+                        var popup = L.popup()
+                            .setLatLng(latlng)
+                            .setContent(`<p>Unidad ${unidad}<br />Velocidad ${datos_historial[i].velocidad} km/h -> Hora ${datos_historial[i].hora}</p>`)
+                            .openOn(map);
+
+
+                        marker.bindPopup(popup).openPopup()
+
+                        marker.addTo(map)
+
+                    }
+
+                } else {
+                    alert("Error Mapa - ApiRest")
+                }
+
+
+            }).fail(function(xthp, error) {
+
+                alert("ERROR EN API-MAP")
+            })
+        }
+    </script>
+
 
 </body>
 

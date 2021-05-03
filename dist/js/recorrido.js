@@ -33,10 +33,11 @@ function recorrido() {
                 var json_string = JSON.stringify(json_response)
                 var json_parse = JSON.parse(json_string)
 
+                datos_recorrido = []
 
                 if (json_parse.status_code == 200) {
 
-                    datos_recorrido = []
+
 
                     for (let i = 0; i < json_parse.datos.length; i++) {
 
@@ -90,6 +91,8 @@ function recorrido() {
                     token_invalited()
                 }
             }).fail(function(error) {
+                datos_recorrido = []
+
                 hideSpinner()
 
                 Swal.fire(
@@ -145,10 +148,35 @@ $(document).on("change", "#time_recorrido_end", function() {
 
 
 $(document).on("click", "#btn_draw_on_map", function() {
-    /*var crypt = CryptoJS.MD5(JSON.stringify(datos_recorrido))
-    var decrypt = CryptoJS.AES.decrypt("MD5", crypt)
-    console.log(decrypt)*/
-    var locatio_ = window.open("../../pages/map/mapa.html?datos=" + url_aux, "_blank")
 
-    locatio_.focus()
+
+    /*$.ajax({
+        url: '../../pages/map/mapa.html',
+
+        crossDomain: true,
+        dataType: 'html',
+
+        header: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Request-Method': '*',
+        }
+
+    }).done(function(html) {
+        //var element = document.getElementById("tbody_recorrido")
+        //element.innerHTML = html
+
+        $('#tbody_recorrido').append(html)
+    }).fail(function(error) {
+        console.log(error)
+        alert("No se pudo cargar el mapa")
+    })*/
+
+
+    if (datos_recorrido.length > 0) {
+        var locatio_ = window.open("../../pages/map/mapa.html?datos=" + btoa(url_aux) + "&bandera=r", "_blank")
+
+        locatio_.focus()
+    }
+
+
 })

@@ -16,6 +16,8 @@ function getCheck() {
 function getSubCompanys() {
     var selecte = document.getElementById("select_sub_companys")
     var option_companys = selecte.options[selecte.selectedIndex].value
+
+
     return option_companys
 }
 

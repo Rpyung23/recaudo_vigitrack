@@ -9,6 +9,7 @@ function api_conteo_tarjetas(url, salida) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         method: "POST",
+        timeout: 70000,
         data: getCookie("token")
     }).done(function(datos) {
         hideSpinner()

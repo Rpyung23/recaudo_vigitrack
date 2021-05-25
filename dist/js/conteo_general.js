@@ -8,6 +8,7 @@ function api_conteo_general(url, unidad) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         method: "POST",
+        timeout: 70000,
         data: getCookie("token")
     }).done(function(datos) {
         hideSpinner()
